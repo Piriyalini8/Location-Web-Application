@@ -17,11 +17,13 @@ public class LocationController {
 	@Autowired
 	LocationService service;
 	
+//	this method will retrieve the initial create location page
 	@RequestMapping("/showCreate")
 	public String showCreate(){
 		return "createLocation";
 	}
 	
+//	this mehtod will execute after user add all values in create location page and hit save button
 	@RequestMapping("/saveLoc")
 	public String saveLocation(@ModelAttribute("location")Location location,ModelMap modelMap) {
 		Location savedLocation = service.saveLocation(location);
@@ -30,6 +32,7 @@ public class LocationController {
 		return "createLocation";
 	}
 	
+//	this method will run when user click View All button on the create page and retrieve page with list of locations 
 	@RequestMapping("/displayLocations")
 	public String displayLocations(ModelMap modelMap) {
 		List<Location> locations = service.getAllLocations();
@@ -37,6 +40,7 @@ public class LocationController {
 		return "displayLocations";
 	}
 	
+//	this method will run, when user click delete link and it will delete particular location from database and retrieve page with other lists of location details.
 	@RequestMapping("/deleteLocation")
 	public String deleteLocation(@RequestParam("id")int id,ModelMap modelMap) {
 		Location location=service.getLocationById(id);
@@ -46,6 +50,7 @@ public class LocationController {
 		return "displayLocations";
 	}
 	
+//	when user click edit link in the display location page, this method will run and retrieve page for update particular location details
 	@RequestMapping("/showUpdate")
 	public String showUpdate(@RequestParam("id")int id,ModelMap modelMap){
 		Location location=service.getLocationById(id);
@@ -53,6 +58,7 @@ public class LocationController {
 		return "updateLocation";
 	}
 	
+//	this method used to update location detail and after update, will retrieve list of location details page.
 	@RequestMapping("/updateLoc")
 	public String updateLocation(@ModelAttribute("location")Location location,ModelMap modelMap) {
 		service.updateLocation(location);
