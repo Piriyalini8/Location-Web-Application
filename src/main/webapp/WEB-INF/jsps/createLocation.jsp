@@ -14,11 +14,12 @@
 		Code: <input type="text" name="code" />
 		Name: <input type="text" name="name" /> 
 		Type: 
-			Urban <input type="radio" name="type" /> 
-			Rural <input type="radio" name="type" /> 
+			Urban <input type="radio" name="type" value="URBAN"/> 
+			Rural <input type="radio" name="type" VALUE="RURAL"/> 
 		      <input type="submit" value="save" />
 		</pre>
 
 	</form>
+	${msg}
 </body>
 </html>
