@@ -11,11 +11,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.priya.location.entities.Location;
 import com.priya.location.service.LocationService;
+import com.priya.location.util.EmailUtil;
 
 @Controller
 public class LocationController {
 	@Autowired
 	LocationService service;
+	
+	@Autowired
+	EmailUtil emailUtil;
 	
 //	this method will retrieve the initial create location page
 	@RequestMapping("/showCreate")
@@ -29,6 +33,8 @@ public class LocationController {
 		Location savedLocation = service.saveLocation(location);
 		String msg="Location saved with the id: "+savedLocation.getId();
 		modelMap.addAttribute("msg", msg);
+		emailUtil.sendEmail("priyalini268@gmail.com", "Location Saved", "Location Saved Successfully "
+				+ "and about to return a response");
 		return "createLocation";
 	}
 	
